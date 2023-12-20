@@ -93,6 +93,13 @@ const options = {
     ],
   },
   singleAttributePerLine: commonOptions.singleAttributePerLine,
+  respectLongMethodChains: {
+    category: CATEGORY_JAVASCRIPT,
+    type: "boolean",
+    default: true,
+    description:
+      "Will not break method chains with more than 3 method calls, like Prettier 1.x.",
+  }
 };
 
 export default options;

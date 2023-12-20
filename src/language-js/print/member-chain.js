@@ -371,13 +371,13 @@ function printMemberChain(path, options, print) {
   let result;
 
   // We don't want to print in one line if at least one of these conditions occurs:
+  //  * option has respectLongMethodChains as true
   //  * the chain has comments,
   //  * the chain is an expression statement and all the arguments are literal-like ("fluent configuration" pattern),
   //  * the chain is longer than 2 calls and has non-trivial arguments or more than 2 arguments in any call but the first one,
-  //  * any group but the last one has a hard line,
-  //  * the last call's arguments have a hard line and other calls have non-trivial arguments.
+  //  * any group but the last one has a hard line
   if (
-    nodeHasComment ||
+    options.respectLongMethodChains || nodeHasComment ||
     (callExpressions.length > 2 &&
       callExpressions.some(
         (expr) => !expr.arguments.every((arg) => isSimpleCallArgument(arg)),
